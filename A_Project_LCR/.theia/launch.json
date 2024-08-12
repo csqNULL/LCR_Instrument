@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": "CCS Debug",
+        "type": "ccs-debug",
+        "request": "launch",
+        "project": "A_Project_LCR"
+    },
+    ]
+}

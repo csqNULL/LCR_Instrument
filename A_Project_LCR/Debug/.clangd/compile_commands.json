@@ -1,0 +1,57 @@
+[
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/Debug/ti_msp_dl_config.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/delay.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/fir.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/iic.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/key.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/main.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/measure.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/my_filter.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/oled.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/ti_msp_dl_config.c"
+   },
+   {
+      "directory" : "D:/CCS/workspace_v12/A_Project_LCR/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/DSP/Include\" -I\"D:/CCS/workspace_v12/A_Project_LCR\" -I\"D:/CCS/workspace_v12/A_Project_LCR/Debug\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source/third_party/CMSIS/Core/Include\" -I\"C:/ti/mspm0_sdk_1_30_00_03/source\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c++/v1\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/lib/clang/15.0.7/include\" -isystem\"D:/ti/ccstheia140/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS/include/c\"",
+      "file"      : "D:/CCS/workspace_v12/A_Project_LCR/tjc_usart_hmi.c"
+   }
+]

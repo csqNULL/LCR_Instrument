@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "ti_msp_dl_config.h": "c",
+        "dac_data.h": "c",
+        "locale.h": "c",
+        "delay.h": "c",
+        "stdio.h": "c",
+        "tjc_usart_hmi.h": "c",
+        "limits": "c",
+        "cmath": "c",
+        "cstdlib": "c"
+    }
+}

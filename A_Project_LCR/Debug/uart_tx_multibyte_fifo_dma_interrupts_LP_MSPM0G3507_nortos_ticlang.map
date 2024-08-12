@@ -1,0 +1,424 @@
+******************************************************************************
+            TI ARM Clang Linker PC v3.2.1                      
+******************************************************************************
+>> Linked Sat Apr 20 16:52:51 2024
+
+OUTPUT FILE NAME:   <uart_tx_multibyte_fifo_dma_interrupts_LP_MSPM0G3507_nortos_ticlang.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00001b89
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00020000  00002570  0001da90  R  X
+  SRAM                  20200000   00008000  00000683  0000797d  RW X
+  BCR_CONFIG            41c00000   00000080  00000000  00000080  R   
+  BSL_CONFIG            41c00100   00000080  00000000  00000080  R   
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00002570   00002570    r-x
+  00000000    00000000    000000c0   000000c0    r-- .intvecs
+  000000c0    000000c0    00001c50   00001c50    r-x .text
+  00001d10    00001d10    00000848   00000848    r-- .rodata
+  00002558    00002558    00000018   00000018    r-- .cinit
+20200000    20200000    00000483   00000000    rw-
+  20200000    20200000    00000483   00000000    rw- .bss
+20207e00    20207e00    00000200   00000000    rw-
+  20207e00    20207e00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    000000c0     
+                  00000000    000000c0     startup_mspm0g350x_ticlang.o (.intvecs)
+
+.text      0    000000c0    00001c50     
+                  000000c0    00000ee4     oled.o (.text.OLED_Init)
+                  00000fa4    00000260     oled.o (.text.OLED_Refresh)
+                  00001204    00000148     iic.o (.text.IIC_SendByte)
+                  0000134c    000000ec     uart_tx_multibyte_fifo_dma_interrupts.o (.text.main)
+                  00001438    0000008c     ti_msp_dl_config.o (.text.SYSCFG_DL_UART_0_init)
+                  000014c4    00000088     ti_msp_dl_config.o (.text.SYSCFG_DL_initPower)
+                  0000154c    00000080     ti_msp_dl_config.o (.text.SYSCFG_DL_ADC12_0_init)
+                  000015cc    00000078     driverlib.a : dl_dac12.o (.text.DL_DAC12_init)
+                  00001644    00000062     libc.a : memset16.S.obj (.text:memset)
+                  000016a6    00000054     driverlib.a : dl_dma.o (.text.DL_DMA_configTransfer)
+                  000016fa    00000002     startup_mspm0g350x_ticlang.o (.text.Default_Handler)
+                  000016fc    00000050     ti_msp_dl_config.o (.text.SYSCFG_DL_GPIO_init)
+                  0000174c    0000004c     driverlib.a : dl_adc12.o (.text.DL_ADC12_setClockConfig)
+                  00001798    0000004c                 : dl_uart.o (.text.DL_UART_init)
+                  000017e4    0000004c     ti_msp_dl_config.o (.text.SYSCFG_DL_COMP_0_init)
+                  00001830    00000046     driverlib.a : dl_dma.o (.text.DL_DMA_initChannel)
+                  00001876    00000002     --HOLE-- [fill = 0]
+                  00001878    00000040     ti_msp_dl_config.o (.text.SYSCFG_DL_SYSCTL_init)
+                  000018b8    0000003c     iic.o (.text.IIC_WaitAck)
+                  000018f4    0000003c     libc.a : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit)
+                  00001930    00000038     driverlib.a : dl_dma.o (.text.DL_DMA_setTrigger)
+                  00001968    00000034                 : dl_vref.o (.text.DL_VREF_configReference)
+                  0000199c    00000034     ti_msp_dl_config.o (.text.SYSCFG_DL_OPA_0_init)
+                  000019d0    00000034     ti_msp_dl_config.o (.text.SYSCFG_DL_OPA_1_init)
+                  00001a04    00000034     ti_msp_dl_config.o (.text.SYSCFG_DL_init)
+                  00001a38    00000030     driverlib.a : dl_dac12.o (.text.DL_DAC12_configDataFormat)
+                  00001a68    00000030     iic.o (.text.IIC_Start)
+                  00001a98    00000028     uart_tx_multibyte_fifo_dma_interrupts.o (.text.ADC0_IRQHandler)
+                  00001ac0    00000028     driverlib.a : dl_adc12.o (.text.DL_Common_updateReg)
+                  00001ae8    00000028                 : dl_dac12.o (.text.DL_Common_updateReg)
+                  00001b10    00000028                 : dl_dma.o (.text.DL_Common_updateReg)
+                  00001b38    00000028                 : dl_uart.o (.text.DL_Common_updateReg)
+                  00001b60    00000028     uart_tx_multibyte_fifo_dma_interrupts.o (.text.UART0_IRQHandler)
+                  00001b88    00000028     libc.a : boot_cortex_m.c.obj (.text:_c_int00_noargs)
+                  00001bb0    00000024     driverlib.a : dl_uart.o (.text.DL_UART_setClockConfig)
+                  00001bd4    00000024     ti_msp_dl_config.o (.text.SYSCFG_DL_DAC12_init)
+                  00001bf8    00000024     ti_msp_dl_config.o (.text.SYSCFG_DL_GPAMP_0_init)
+                  00001c1c    0000001c     iic.o (.text.IIC_Stop)
+                  00001c38    00000018     ti_msp_dl_config.o (.text.SYSCFG_DL_DMA_CH0_init)
+                  00001c50    00000018     ti_msp_dl_config.o (.text.SYSCFG_DL_DMA_CH1_init)
+                  00001c68    00000016     driverlib.a : dl_uart.o (.text.DL_UART_disable)
+                  00001c7e    00000014                 : dl_common.o (.text.DL_Common_delayCycles)
+                  00001c92    00000002     --HOLE-- [fill = 0]
+                  00001c94    00000014     ti_msp_dl_config.o (.text.SYSCFG_DL_VREF_init)
+                  00001ca8    00000010     libc.a : copy_zero_init.c.obj (.text:decompress:ZI)
+                  00001cb8    0000000e     delay.o (.text.delay_ms)
+                  00001cc6    00000002     --HOLE-- [fill = 0]
+                  00001cc8    0000000c     uart_tx_multibyte_fifo_dma_interrupts.o (.text.DAC0_IRQHandler)
+                  00001cd4    0000000c     uart_tx_multibyte_fifo_dma_interrupts.o (.text.GROUP1_IRQHandler)
+                  00001ce0    0000000c     ti_msp_dl_config.o (.text.SYSCFG_DL_DMA_init)
+                  00001cec    0000000c     libclang_rt.builtins.a : aeabi_memset.S.obj (.text.__aeabi_memclr)
+                  00001cf8    0000000a     delay.o (.text.delay_us)
+                  00001d02    00000004     startup_mspm0g350x_ticlang.o (.text.Reset_Handler)
+                  00001d06    00000004     libc.a : pre_init.c.obj (.text._system_pre_init)
+                  00001d0a    00000004            : exit.c.obj (.text:abort)
+                  00001d0e    00000002     --HOLE-- [fill = 0]
+
+.cinit     0    00002558    00000018     
+                  00002558    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00002560    00000004     (__TI_handler_table)
+                  00002564    00000008     (__TI_cinit_table)
+                  0000256c    00000004     --HOLE-- [fill = 0]
+
+.rodata    0    00001d10    00000848     
+                  00001d10    000007d0     uart_tx_multibyte_fifo_dma_interrupts.o (.rodata.gOutputSignalSine1000)
+                  000024e0    00000020     ti_msp_dl_config.o (.rodata.gDAC12Config)
+                  00002500    00000018     ti_msp_dl_config.o (.rodata.gDMA_CH0Config)
+                  00002518    00000018     ti_msp_dl_config.o (.rodata.gDMA_CH1Config)
+                  00002530    0000000c     ti_msp_dl_config.o (.rodata.gVREFConfig)
+                  0000253c    0000000a     ti_msp_dl_config.o (.rodata.gUART_0Config)
+                  00002546    00000002     ti_msp_dl_config.o (.rodata.gUART_0ClockConfig)
+                  00002548    00000008     ti_msp_dl_config.o (.rodata.gADC12_0ClockConfig)
+                  00002550    00000004     uart_tx_multibyte_fifo_dma_interrupts.o (.rodata.gTxPacket)
+                  00002554    00000004     --HOLE-- [fill = 0]
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.binit     0    00000000    00000000     
+
+.bss       0    20200000    00000483     UNINITIALIZED
+                  20200000    00000480     (.common:OLED_GRAM)
+                  20200480    00000001     (.common:gCheckADC)
+                  20200481    00000001     (.common:gCheckUART)
+                  20200482    00000001     (.common:gDMADone)
+
+.stack     0    20207e00    00000200     UNINITIALIZED
+                  20207e00    00000004     libc.a : boot_cortex_m.c.obj (.stack)
+                  20207e04    000001fc     --HOLE--
+
+__llvm_prf_cnts 
+*          0    20200000    00000000     UNINITIALIZED
+
+__llvm_prf_bits 
+*          0    20200000    00000000     UNINITIALIZED
+
+MODULE SUMMARY
+
+       Module                                    code   ro data   rw data
+       ------                                    ----   -------   -------
+    .\
+       oled.o                                    4420   0         1152   
+       uart_tx_multibyte_fifo_dma_interrupts.o   340    2004      3      
+       ti_msp_dl_config.o                        932    112       0      
+       iic.o                                     464    0         0      
+       startup_mspm0g350x_ticlang.o              6      192       0      
+       delay.o                                   24     0         0      
+    +--+-----------------------------------------+------+---------+---------+
+       Total:                                    6186   2308      1155   
+                                                                         
+    C:/ti/mspm0_sdk_1_30_00_03/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+       dl_dma.o                                  250    0         0      
+       dl_dac12.o                                208    0         0      
+       dl_uart.o                                 174    0         0      
+       dl_adc12.o                                116    0         0      
+       dl_vref.o                                 52     0         0      
+       dl_common.o                               20     0         0      
+    +--+-----------------------------------------+------+---------+---------+
+       Total:                                    820    0         0      
+                                                                         
+    D:\ti\ccs1260\ccs\tools\compiler\ti-cgt-armllvm_3.2.1.LTS\lib\armv6m-ti-none-eabi/c/libc.a
+       memset16.S.obj                            98     0         0      
+       autoinit.c.obj                            60     0         0      
+       boot_cortex_m.c.obj                       40     0         0      
+       copy_zero_init.c.obj                      16     0         0      
+       exit.c.obj                                4      0         0      
+       pre_init.c.obj                            4      0         0      
+    +--+-----------------------------------------+------+---------+---------+
+       Total:                                    222    0         0      
+                                                                         
+    D:\ti\ccs1260\ccs\tools\compiler\ti-cgt-armllvm_3.2.1.LTS\lib\clang/15.0.7/lib/armv6m-ti-none-eabi/libclang_rt.builtins.a
+       aeabi_memset.S.obj                        12     0         0      
+    +--+-----------------------------------------+------+---------+---------+
+       Total:                                    12     0         0      
+                                                                         
+       Stack:                                    0      0         512    
+       Linker Generated:                         0      20        0      
+    +--+-----------------------------------------+------+---------+---------+
+       Grand Total:                              7240   2328      1667   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00002564 records: 1, size/record: 8, table size: 8
+	.bss: load addr=00002558, load size=00000008 bytes, run addr=20200000, run size=00000483 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00002560 records: 1, size/record: 4, table size: 4
+	index: 0, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                          
+-------   ----                          
+00001a99  ADC0_IRQHandler               
+000016fb  ADC1_IRQHandler               
+000016fb  AES_IRQHandler                
+00001d0a  C$$EXIT                       
+000016fb  CANFD0_IRQHandler             
+00001cc9  DAC0_IRQHandler               
+0000174d  DL_ADC12_setClockConfig       
+00001c7f  DL_Common_delayCycles         
+000015cd  DL_DAC12_init                 
+00001831  DL_DMA_initChannel            
+00001799  DL_UART_init                  
+00001bb1  DL_UART_setClockConfig        
+00001969  DL_VREF_configReference       
+000016fb  DMA_IRQHandler                
+000016fb  Default_Handler               
+000016fb  GROUP0_IRQHandler             
+00001cd5  GROUP1_IRQHandler             
+000016fb  HardFault_Handler             
+000016fb  I2C0_IRQHandler               
+000016fb  I2C1_IRQHandler               
+00001205  IIC_SendByte                  
+00001a69  IIC_Start                     
+00001c1d  IIC_Stop                      
+000018b9  IIC_WaitAck                   
+000016fb  NMI_Handler                   
+20200000  OLED_GRAM                     
+000000c1  OLED_Init                     
+00000fa5  OLED_Refresh                  
+000016fb  PendSV_Handler                
+000016fb  RTC_IRQHandler                
+00001d03  Reset_Handler                 
+000016fb  SPI0_IRQHandler               
+000016fb  SPI1_IRQHandler               
+000016fb  SVC_Handler                   
+0000154d  SYSCFG_DL_ADC12_0_init        
+000017e5  SYSCFG_DL_COMP_0_init         
+00001bd5  SYSCFG_DL_DAC12_init          
+00001c39  SYSCFG_DL_DMA_CH0_init        
+00001c51  SYSCFG_DL_DMA_CH1_init        
+00001ce1  SYSCFG_DL_DMA_init            
+00001bf9  SYSCFG_DL_GPAMP_0_init        
+000016fd  SYSCFG_DL_GPIO_init           
+0000199d  SYSCFG_DL_OPA_0_init          
+000019d1  SYSCFG_DL_OPA_1_init          
+00001879  SYSCFG_DL_SYSCTL_init         
+00001439  SYSCFG_DL_UART_0_init         
+00001c95  SYSCFG_DL_VREF_init           
+00001a05  SYSCFG_DL_init                
+000014c5  SYSCFG_DL_initPower           
+000016fb  SysTick_Handler               
+000016fb  TIMA0_IRQHandler              
+000016fb  TIMA1_IRQHandler              
+000016fb  TIMG0_IRQHandler              
+000016fb  TIMG12_IRQHandler             
+000016fb  TIMG6_IRQHandler              
+000016fb  TIMG7_IRQHandler              
+000016fb  TIMG8_IRQHandler              
+00001b61  UART0_IRQHandler              
+000016fb  UART1_IRQHandler              
+000016fb  UART2_IRQHandler              
+000016fb  UART3_IRQHandler              
+20208000  __STACK_END                   
+00000200  __STACK_SIZE                  
+00000000  __TI_ATRegion0_region_sz      
+00000000  __TI_ATRegion0_src_addr       
+00000000  __TI_ATRegion0_trg_addr       
+00000000  __TI_ATRegion1_region_sz      
+00000000  __TI_ATRegion1_src_addr       
+00000000  __TI_ATRegion1_trg_addr       
+00000000  __TI_ATRegion2_region_sz      
+00000000  __TI_ATRegion2_src_addr       
+00000000  __TI_ATRegion2_trg_addr       
+00002564  __TI_CINIT_Base               
+0000256c  __TI_CINIT_Limit              
+0000256c  __TI_CINIT_Warm               
+00002560  __TI_Handler_Table_Base       
+00002564  __TI_Handler_Table_Limit      
+000018f5  __TI_auto_init_nobinit_nopinit
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+00000000  __TI_static_base__            
+00001ca9  __TI_zero_init                
+00001ced  __aeabi_memclr                
+00001ced  __aeabi_memclr4               
+00001ced  __aeabi_memclr8               
+ffffffff  __binit__                     
+UNDEFED   __mpu_init                    
+20207e00  __stack                       
+20200000  __start___llvm_prf_bits       
+20200000  __start___llvm_prf_cnts       
+20200000  __stop___llvm_prf_bits        
+20200000  __stop___llvm_prf_cnts        
+00001b89  _c_int00_noargs               
+UNDEFED   _system_post_cinit            
+00001d07  _system_pre_init              
+00001d0b  abort                         
+ffffffff  binit                         
+00001cb9  delay_ms                      
+00001cf9  delay_us                      
+20200480  gCheckADC                     
+20200481  gCheckUART                    
+20200482  gDMADone                      
+00001d10  gOutputSignalSine1000         
+00002550  gTxPacket                     
+00000000  interruptVectors              
+0000134d  main                          
+00001645  memset                        
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                          
+-------   ----                          
+00000000  __TI_ATRegion0_region_sz      
+00000000  __TI_ATRegion0_src_addr       
+00000000  __TI_ATRegion0_trg_addr       
+00000000  __TI_ATRegion1_region_sz      
+00000000  __TI_ATRegion1_src_addr       
+00000000  __TI_ATRegion1_trg_addr       
+00000000  __TI_ATRegion2_region_sz      
+00000000  __TI_ATRegion2_src_addr       
+00000000  __TI_ATRegion2_trg_addr       
+00000000  __TI_static_base__            
+00000000  interruptVectors              
+000000c1  OLED_Init                     
+00000200  __STACK_SIZE                  
+00000fa5  OLED_Refresh                  
+00001205  IIC_SendByte                  
+0000134d  main                          
+00001439  SYSCFG_DL_UART_0_init         
+000014c5  SYSCFG_DL_initPower           
+0000154d  SYSCFG_DL_ADC12_0_init        
+000015cd  DL_DAC12_init                 
+00001645  memset                        
+000016fb  ADC1_IRQHandler               
+000016fb  AES_IRQHandler                
+000016fb  CANFD0_IRQHandler             
+000016fb  DMA_IRQHandler                
+000016fb  Default_Handler               
+000016fb  GROUP0_IRQHandler             
+000016fb  HardFault_Handler             
+000016fb  I2C0_IRQHandler               
+000016fb  I2C1_IRQHandler               
+000016fb  NMI_Handler                   
+000016fb  PendSV_Handler                
+000016fb  RTC_IRQHandler                
+000016fb  SPI0_IRQHandler               
+000016fb  SPI1_IRQHandler               
+000016fb  SVC_Handler                   
+000016fb  SysTick_Handler               
+000016fb  TIMA0_IRQHandler              
+000016fb  TIMA1_IRQHandler              
+000016fb  TIMG0_IRQHandler              
+000016fb  TIMG12_IRQHandler             
+000016fb  TIMG6_IRQHandler              
+000016fb  TIMG7_IRQHandler              
+000016fb  TIMG8_IRQHandler              
+000016fb  UART1_IRQHandler              
+000016fb  UART2_IRQHandler              
+000016fb  UART3_IRQHandler              
+000016fd  SYSCFG_DL_GPIO_init           
+0000174d  DL_ADC12_setClockConfig       
+00001799  DL_UART_init                  
+000017e5  SYSCFG_DL_COMP_0_init         
+00001831  DL_DMA_initChannel            
+00001879  SYSCFG_DL_SYSCTL_init         
+000018b9  IIC_WaitAck                   
+000018f5  __TI_auto_init_nobinit_nopinit
+00001969  DL_VREF_configReference       
+0000199d  SYSCFG_DL_OPA_0_init          
+000019d1  SYSCFG_DL_OPA_1_init          
+00001a05  SYSCFG_DL_init                
+00001a69  IIC_Start                     
+00001a99  ADC0_IRQHandler               
+00001b61  UART0_IRQHandler              
+00001b89  _c_int00_noargs               
+00001bb1  DL_UART_setClockConfig        
+00001bd5  SYSCFG_DL_DAC12_init          
+00001bf9  SYSCFG_DL_GPAMP_0_init        
+00001c1d  IIC_Stop                      
+00001c39  SYSCFG_DL_DMA_CH0_init        
+00001c51  SYSCFG_DL_DMA_CH1_init        
+00001c7f  DL_Common_delayCycles         
+00001c95  SYSCFG_DL_VREF_init           
+00001ca9  __TI_zero_init                
+00001cb9  delay_ms                      
+00001cc9  DAC0_IRQHandler               
+00001cd5  GROUP1_IRQHandler             
+00001ce1  SYSCFG_DL_DMA_init            
+00001ced  __aeabi_memclr                
+00001ced  __aeabi_memclr4               
+00001ced  __aeabi_memclr8               
+00001cf9  delay_us                      
+00001d03  Reset_Handler                 
+00001d07  _system_pre_init              
+00001d0a  C$$EXIT                       
+00001d0b  abort                         
+00001d10  gOutputSignalSine1000         
+00002550  gTxPacket                     
+00002560  __TI_Handler_Table_Base       
+00002564  __TI_CINIT_Base               
+00002564  __TI_Handler_Table_Limit      
+0000256c  __TI_CINIT_Limit              
+0000256c  __TI_CINIT_Warm               
+20200000  OLED_GRAM                     
+20200000  __start___llvm_prf_bits       
+20200000  __start___llvm_prf_cnts       
+20200000  __stop___llvm_prf_bits        
+20200000  __stop___llvm_prf_cnts        
+20200480  gCheckADC                     
+20200481  gCheckUART                    
+20200482  gDMADone                      
+20207e00  __stack                       
+20208000  __STACK_END                   
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+ffffffff  __binit__                     
+ffffffff  binit                         
+UNDEFED   __mpu_init                    
+UNDEFED   _system_post_cinit            
+
+[108 symbols]
