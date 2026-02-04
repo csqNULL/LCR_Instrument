@@ -14,15 +14,29 @@
 #include "ti_msp_dl_config.h"
 #include "tjc_usart_hmi.h"
 
-#define ADC_SAMPLE_SIZE (1024)
-#define ADC_MAX (4096)
-#define ADC_SAMPLE_SIZE_1 (10)
+/* ============== ADC相关常量 ============== */
+#define ADC_SAMPLE_SIZE (1024)        // ADC采样点数
+#define ADC_MAX (4096)                // 12位ADC最大值
+#define ADC_SAMPLE_SIZE_1 (10)        // 二极管测量采样点数
 
+/* ============== 测量参数常量 ============== */
 #define COMP_INST_REF_VOLTAGE_mV (1400)
+#define DAC_VPP_MV (800)              // DAC输出峰峰值(mV)
+#define VDD_MV (3300)                 // 电源电压(mV)
+#define DAC_VPP_ADC ((double)DAC_VPP_MV / VDD_MV * ADC_MAX)  // DAC峰峰值对应的ADC值
 
+/* 运放输入阻抗补偿常量 */
+#define OPA_INPUT_IMPEDANCE (6.25e6)  // 运放输入阻抗(Ω)，用于电阻测量补偿
+
+/* 电容测量寄生电容补偿 */
+#define PARASITIC_CAPACITANCE (125e-12)  // 寄生电容(F)
+
+/* ============== 分压电阻档位标志 ============== */
 #define FLAG_RG0 (0)
 #define FLAG_RG1 (1)
 #define FLAG_RG2 (2)
+
+/* ============== 元件类型标志 ============== */
 #define FLAG_OPEN (0)
 #define FLAG_L (1)
 #define FLAG_C (2)
@@ -34,6 +48,7 @@
 #define OPA 0
 #define delay_usart delay_ms(5)
 
+/* ============== 测量模式标志 ============== */
 #define MODE_MEASURE (1)
 #define MODE_CALIBRATION (2)
 #define MODE_CONTINUE (3)
@@ -41,7 +56,7 @@
 uint16_t ADC_Mean(uint16_t *data);
 double phaseDetecter(uint16_t *data, uint16_t *dacSquare, double dataMean);
 double calculateVpp(uint16_t *data, int flag);
-void sortBubble(double *data, int length);
+void sortArray(double *data, int length);
 double DataMean(uint16_t *data);
 double phaseDetecter(uint16_t *data, uint16_t *dacSquare, double dataMean);
 void calculate_LCR();
@@ -168,21 +183,32 @@ const DL_MathACL_operationConfig gDivConfig = {.opType = DL_MATHACL_OP_TYPE_DIV,
                                                .scaleFactor = 1,
                                                .qType = DL_MATHACL_Q_TYPE_Q18};
 
-void sortBubble(double *data, int length)
+/**
+ * @brief 使用插入排序对数组进行升序排序
+ * 
+ * 插入排序对于小数组（如bufferLength=20）比冒泡排序更高效，
+ * 平均情况下减少约一半的比较和交换操作。
+ *
+ * @param data 指向要排序的double数组的指针
+ * @param length 数组的长度
+ */
+void sortArray(double *data, int length)
 {
-  double t;
+  double key;
+  int j;
 
-  for (int i = 0; i < length - 1; i++)
+  for (int i = 1; i < length; i++)
   {
-    for (int j = 0; j < length - 1 - i; j++)
+    key = data[i];
+    j = i - 1;
+
+    // 将比key大的元素向后移动
+    while (j >= 0 && data[j] > key)
     {
-      if (data[j] > data[j + 1])
-      {
-        t = data[j + 1];
-        data[j + 1] = data[j];
-        data[j] = t;
-      }
+      data[j + 1] = data[j];
+      j--;
     }
+    data[j + 1] = key;
   }
 }
 /**
@@ -216,7 +242,7 @@ double findMean(double *data, int length)
 {
   double mean_res, sum = 0; // 初始化计算平均值所需的变量
 
-  sortBubble(data, length);
+  sortArray(data, length);
   for (int i = 1; i < length - 1; i++)
     sum += (double)data[i];
   // 计算平均值
@@ -236,8 +262,8 @@ double findMean(double *data, int length)
 double findMedian(double *data, int length)
 {
   double mid;
-  // 使用冒泡排序对数组进行排序
-  sortBubble(data, length);
+  // 使用插入排序对数组进行排序
+  sortArray(data, length);
   // 计算并返回中位数
   mid = data[length / 2];
   return mid;
@@ -454,8 +480,37 @@ double calculatPhase_FFT()
   return atan2(fftData[9 * 2 + 1], fftData[9 * 2]);
 }
 
+/**
+ * @brief 计算阻抗相关参数的辅助函数
+ * 
+ * 根据DAC和OPA的峰峰值以及相位差，使用余弦定理计算电阻上的电压(UR)
+ * 和相关角度参数。
+ *
+ * @param[out] UR 分压电阻上的电压
+ * @param[out] deg2 余弦定理计算的角度
+ * @param dacVpp DAC输出峰峰值
+ * @param opaVpp OPA测量的峰峰值
+ * @param phaseDiff 相位差（弧度）
+ */
+static void calculateImpedanceParams(double *UR, double *deg2, 
+                                     double dacVpp, double opaVpp, double phaseDiff)
+{
+  double dacVpp2 = dacVpp * dacVpp;
+  double opaVpp2 = opaVpp * opaVpp;
+  
+  // 余弦定理计算UR
+  *UR = sqrt(dacVpp2 + opaVpp2 - 2 * dacVpp * opaVpp * cos(phaseDiff));
+  
+  // 计算deg2角度
+  double UR2 = (*UR) * (*UR);
+  *deg2 = acos((dacVpp2 + UR2 - opaVpp2) / (2 * dacVpp * (*UR)));
+}
+
 /*
  * 计算LCR组件的值
+ * 
+ * 根据测量的电压峰峰值和相位差，使用向量分析法计算元件的阻抗值。
+ * 
  * 无参数
  * 无返回值
  */
@@ -463,52 +518,42 @@ void calculate_LCR()
 {
   double deg2, deg3, UR, Z_test; // 定义计算过程中用到的变量
 
+  // 使用预定义常量计算DAC峰峰值
+  dacData_Vpp = DAC_VPP_ADC;
+
   switch (flagElement) // 根据flagElement的值选择计算类型
   {
   case FLAG_L: // 电感计算
-    dacData_Vpp = 800.0 / 3300 * 4096;
-    UR = sqrt(dacData_Vpp * dacData_Vpp + opaData_Vpp * opaData_Vpp -
-              2 * dacData_Vpp * opaData_Vpp * cos(phase));
-    deg2 =
-        acos((dacData_Vpp * dacData_Vpp + UR * UR - opaData_Vpp * opaData_Vpp) /
-             (2 * dacData_Vpp * UR));
+    calculateImpedanceParams(&UR, &deg2, dacData_Vpp, opaData_Vpp, phase);
     deg3 = M_PI / 2 - phase - deg2;
     Z_test = cos(deg3) * opaData_Vpp * RG_Set[flagRG] / UR;
     L = Z_test / w;
-    // 通过调整计算值以优化结果的准确性
+    
+    // 通过调整计算值以优化结果的准确性（补偿单电源运放截止造成的波形失真）
     if (opaData_Vpp * gain / (opaData_Vmax - 2048) <= 1.8)
     {
-      // opaData_Vpp = 2 * (opaData_Vmax - 2048) / gain;
       opaData_Vpp *= 1.3;
-      UR = sqrt(dacData_Vpp * dacData_Vpp + opaData_Vpp * opaData_Vpp -
-                2 * dacData_Vpp * opaData_Vpp * cos(phase));
-      deg2 = acos(
-          (dacData_Vpp * dacData_Vpp + UR * UR - opaData_Vpp * opaData_Vpp) /
-          (2 * dacData_Vpp * UR));
+      calculateImpedanceParams(&UR, &deg2, dacData_Vpp, opaData_Vpp, phase);
       deg3 = M_PI / 2 - phase - deg2;
       Z_test = cos(deg3) * opaData_Vpp * RG_Set[flagRG] / UR;
       L = Z_test / w;
     }
     ESR = sin(deg3) * opaData_Vpp * RG_Set[flagRG] / UR;
     break;
+    
   case FLAG_C: // 电容计算
-    dacData_Vpp = 800.0 / 3300 * 4096;
-    UR = sqrt(dacData_Vpp * dacData_Vpp + opaData_Vpp * opaData_Vpp -
-              2 * dacData_Vpp * opaData_Vpp * cos(phase));
-    deg2 =
-        acos((dacData_Vpp * dacData_Vpp + UR * UR - opaData_Vpp * opaData_Vpp) /
-             (2 * dacData_Vpp * UR));
+    calculateImpedanceParams(&UR, &deg2, dacData_Vpp, opaData_Vpp, phase);
     deg3 = M_PI / 2 + phase - deg2;
     Z_test = cos(deg3) * opaData_Vpp * RG_Set[flagRG] / UR;
-    // 拟合结果
-    C = 1 / (w * Z_test) - 125e-12;
+    // 减去寄生电容进行补偿
+    C = 1 / (w * Z_test) - PARASITIC_CAPACITANCE;
     ESR = sin(deg3) * opaData_Vpp * RG_Set[flagRG] / UR;
     break;
+    
   case FLAG_R: // 电阻计算
-    dacData_Vpp = 800.0 / 3300 * 4096;
     R = RG_Set[flagRG] * opaData_Vpp / (dacData_Vpp - opaData_Vpp);
-    // 拟合结果
-    R = 6.25e6 * R / (6.25e6 - R);
+    // 补偿运放输入阻抗的影响（并联等效）
+    R = OPA_INPUT_IMPEDANCE * R / (OPA_INPUT_IMPEDANCE - R);
     break;
   }
 }
@@ -570,20 +615,22 @@ uint8_t judRange()
 }
 
 /**
- * 调整增益函数
- * 该函数用于根据ADC测量值与opaData_Vpp的比值调整运放OPA1的增益。
- * 通过计算比值，选择合适的增益值以保持信号在合适的范围内。
+ * @brief 调整运放增益函数
+ * 
+ * 该函数用于根据ADC测量值与opaData_Vpp的比值调整运放OPA0和OPA1的增益。
+ * 通过计算比值，选择合适的增益值以保持信号在ADC量程范围内。
+ * 
+ * 增益范围: 4x ~ 1024x (OPA0最大32x, OPA1最大32x)
  *
  * @return uint8_t 返回值为0表示增益未调整，为1表示增益已调整。
  */
 uint8_t adjustGain()
 {
-  // 计算当前温度对应的增益调整值
-  double MAX = 800 / 3300 * 4096;
+  // 计算当前信号需要的放大倍数
   double temp = (double)ADC_MAX / opaData_Vpp;
-  double t = gain0;
+  double initialGain0 = gain0;  // 保存调整前的增益值
 
-  // 根据温度比值选择合适的运放增益
+  // 根据比值选择合适的运放增益档位
   if (temp >= 2 && temp < 4)
   {
     gain0 = 4;
@@ -606,6 +653,7 @@ uint8_t adjustGain()
   }
   else if (temp >= 32 && temp < 64)
   {
+    // 单级运放增益不足，启用两级放大
     gain0 = 32;
     DL_OPA_setGain(OPA_0_INST, DL_OPA_GAIN_N31_P32);
     gain1 = 4;
@@ -637,7 +685,7 @@ uint8_t adjustGain()
 
   // 判断增益是否被调整
   // 如果增益值没有变化，则返回0；否则返回1
-  if (gain0 == t)
+  if (gain0 == initialGain0)
     return 0;
   else
     return 1;

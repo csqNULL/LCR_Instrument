@@ -62,35 +62,20 @@ MainWindow::MainWindow(QWidget *parent)
     sBar->addPermanentWidget(lblRecvNum);
 
     // 定时发送-定时器
-    timSend = new QTimer;
+    timSend = new QTimer(this);  // 设置parent，自动内存管理
     timSend->setInterval(1000); // 设置默认定时时长1000ms
 
     connect(timSend, &QTimer::timeout, this, [=]()
     { on_sendBt_clicked(); });
 
-    // 定时输入间隔-定时器
-    timSend = new QTimer;
-    timSend->setInterval(50); // 设置默认定时时长50ms
-    connect(timSend, &QTimer::timeout, this, [=]()
-    {  });
+    // timInput定时器预留，用于未来可能的输入防抖或周期性检测功能
+    // 当前未启用，不创建以节省资源
 
     //设置显示位数
     ui->lcdNumber->setDigitCount(5);
     ui->lcdNumber->setMode(QLCDNumber::Dec);
     //设置小数点占的空间： true 1 false 2
     ui->lcdNumber->setSmallDecimalPoint(true);
-    //    ui->lcdNumber->display("120.45UF");
-
-    //    QByteArray array = "B:1.54V";
-    //    receive_process(array);
-    //    updateLCD(array);
-    //ui->label_4->setText("元件类型：二极管 上负下正");
-
-    //    QImage image("D:/QT_Project/LCR_Project/D.png");
-
-    //    ui->picLabel->setPixmap(QPixmap::fromImage(image));
-    //    ui->picLabel->resize(100,100);
-    //    ui->picLabel->show();
 }
 
 MainWindow::~MainWindow()
@@ -522,9 +507,8 @@ void MainWindow::on_sendBt_clicked()
 // 状态栏标签显示计数值
 void MainWindow::setNumOnLabel(QLabel *lbl, QString strS, long num)
 {
-    // 标签显示
-    QString strN;
-    strN.sprintf("%ld", num);
+    // 使用QString::number替代已废弃的sprintf
+    QString strN = QString::number(num);
     QString str = strS + strN;
     lbl->setText(str);
 }
